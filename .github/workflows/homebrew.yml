@@ -61,6 +61,6 @@ jobs:
           
       - name: install the binary
         run: |
-          brew doctor axelard
-          brew config axelard
+          brew doctor 
+          brew config 
           brew install axelard
