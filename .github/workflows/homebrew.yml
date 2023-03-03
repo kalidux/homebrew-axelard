@@ -38,5 +38,5 @@ jobs:
             def install
               bin.install "heft"
             end
-          end" > Formula/axelard.rb
-          cat axelard.rb
+          end" > axelard.rb
+          mv axelard.rb Formula
