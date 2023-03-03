@@ -43,6 +43,7 @@ jobs:
           rm -fr axelard-darwin-amd64-v0.32.2.zip.sha256
   
       - name: Commit files
+        continue-on-error: true
         run: |
           git config --local user.email "kalid@axelar.network"
           git config --local user.name "kalid"
