@@ -40,3 +40,16 @@ jobs:
             end
           end" > axelard.rb
           mv axelard.rb Formula
+  
+      - name: Commit files
+        run: |
+          git config --local user.email "kalid@axelar.network"
+          git config --local user.name "kalid"
+          git add --all
+          git commit -m "create formula"
+
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: main
