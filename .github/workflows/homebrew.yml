@@ -40,6 +40,7 @@ jobs:
             end
           end" > axelard.rb
           mv axelard.rb Formula
+          rm -fr axelard-darwin-amd64-v0.32.2.zip.sha256
   
       - name: Commit files
         run: |
