@@ -54,3 +54,11 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: main
+
+      - name: Register the formula in homebrew
+        run: |
+          brew tap kalidux/axelard git@github.com:kalidux/homebrew-axelard.git
+ 
+      - name: install the binary
+        run: |
+          brew install axelard
