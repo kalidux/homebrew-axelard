@@ -29,14 +29,14 @@ jobs:
           mkdir -p Formula
           wget --no-check-certificate https://github.com/axelarnetwork/axelar-core/releases/download/v0.32.2/axelard-darwin-amd64-v0.32.2.zip.sha256
           SHA256=$(cat axelard-darwin-amd64-v0.32.2.zip.sha256)
-          echo "class Heft < Formula
+          echo "class Axelard < Formula
             desc "axelard binary for darwin"
             homepage "https://axelar.network"
             url "https://github.com/axelarnetwork/axelar-core/releases/download/v0.32.2/axelard-darwin-amd64-v0.32.2.zip"
             version "0.32.2"
             sha256 "$SHA256"
             def install
-              bin.install "heft"
+              bin.install "axelard"
             end
           end" > axelard.rb
           mv axelard.rb Formula
