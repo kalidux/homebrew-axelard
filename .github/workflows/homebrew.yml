@@ -42,13 +42,12 @@ jobs:
               url "https://github.com/axelarnetwork/axelar-core/releases/download/v0.32.2/axelard-darwin-amd64-v0.32.2"
               sha256 "$SHA256"
             end
-          end
 
             def install
               resource("axelard").stage do
                 bin.install "axelard"
               end
-            end" > axelard.rb
+          end" > axelard.rb
           cat axelard.rb
           mv axelard.rb Formula
           rm -fr axelard-darwin-amd64-v0.32.2.zip.sha256
