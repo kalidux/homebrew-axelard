@@ -9,7 +9,7 @@ class Axelard < Formula
     sha256 "d9659d57650e87cb5c788cd1740d74c57ecf77f350871a748cfdb71b537f52b2"
   else
     url "https://github.com/axelarnetwork/axelar-core/releases/download/v#{version}/axelard-darwin-amd64-v#{version}.zip"
-    sha256 "c8eb1535be5d2e5e5f6df9618baf5cf6b5f6eb1d01908c8a0a8a77a0b63f20e7"
+    sha256 "2303ed69ee0486814e09554449292b0b3e50f61e57248143c0d24f349df33f1d"
   end
 
   def install
