@@ -17,8 +17,4 @@ class Axelard < Formula
               resource(binary).stage { bin.install axelard }
               chmod 0755, #{bin}/axelard
             end
-            
-            def install
-              bin.install "axelard"
-            end
-          end
+end
