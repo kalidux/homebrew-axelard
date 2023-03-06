@@ -9,7 +9,7 @@ class Axelard < Formula
   # Set default version
   default_version = "0.32.2"
 
-  version (ARGV.value("with-version") || default_version)
+  version (ARGV.getopts("with-version:")["with-version"] || default_version)
 
   if Hardware::CPU.arm?
     url "https://github.com/axelarnetwork/axelar-core/releases/download/v#{version}/axelard-darwin-arm64-v#{version}.zip"
