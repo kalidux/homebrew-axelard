@@ -39,7 +39,7 @@ jobs:
 
       - name: Register the formula in homebrew
         run: |
-          brew tap axelard https://github.com/kalidux/homebrew-axelard.git
+          brew tap kalidux/axelard https://github.com/kalidux/homebrew-axelard.git
           
       - name: install the binary
         run: |
