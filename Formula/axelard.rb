@@ -4,12 +4,6 @@ class Axelard < Formula
             url "https://github.com/axelarnetwork/axelar-core/releases/download/v0.32.2/axelard-darwin-amd64-v0.32.2"
             version "0.32.2"
             sha256 "cac744649ea01b223a04d8916b6413f3fb504cc45585cade4f511e35fcc10f40"    
-  
-  resource "axelard" do
-    url "https://github.com/axelarnetwork/axelar-core/releases/download/v0.32.2/axelard-darwin-amd64-v0.32.2"
-    version "0.32.2"
-    sha256 "cac744649ea01b223a04d8916b6413f3fb504cc45585cade4f511e35fcc10f40"
-  end
          
   def install
     resource("axelard").stage  bin.install "axelard"
