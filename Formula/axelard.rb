@@ -1,3 +1,5 @@
+require "optparse"
+
 class Axelard < Formula
   desc "The Axelar Network Core Daemon"
   homepage "https://github.com/axelarnetwork/axelar-core"
@@ -9,15 +11,24 @@ class Axelard < Formula
   # Set default version
   default_version = "0.32.2"
 
-  version (ARGV.getopts("with-version:")["with-version"] || default_version)
-
-  if Hardware::CPU.arm?
-    url "https://github.com/axelarnetwork/axelar-core/releases/download/v#{version}/axelard-darwin-arm64-v#{version}.zip"
-  else
-    url "https://github.com/axelarnetwork/axelar-core/releases/download/v#{version}/axelard-darwin-amd64-v#{version}.zip"
-  end
-
   def install
+    # Parse command line options
+    options = {}
+    OptionParser.new do |opts|
+      opts.on("--with-version=VERSION", String, "Specify the version to install") do |v|
+        options[:version] = v
+      end
+    end.parse!
+
+    # Use user-specified version or default
+    version = options[:version] || default_version
+
+    if Hardware::CPU.arm?
+      url "https://github.com/axelarnetwork/axelar-core/releases/download/v#{version}/axelard-darwin-arm64-v#{version}.zip"
+    else
+      url "https://github.com/axelarnetwork/axelar-core/releases/download/v#{version}/axelard-darwin-amd64-v#{version}.zip"
+    end
+
     # Download the SHA256 checksum for the release
     sha256_url = "https://github.com/axelarnetwork/axelar-core/releases/download/v#{version}/axelard-darwin-amd64-v#{version}.sha256"
     sha256 = curl_output(sha256_url).split(" ").first
