@@ -6,7 +6,7 @@ class Axelard < Formula
             sha256 "cac744649ea01b223a04d8916b6413f3fb504cc45585cade4f511e35fcc10f40"    
          
   def install
-    resource("axelard").stage  bin.install "axelard"
+    bin.install "axelard"
   end
             
 end
