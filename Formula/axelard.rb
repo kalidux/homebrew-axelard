@@ -13,7 +13,7 @@ class Axelard < Formula
   end
 
   def install
-    bin.install "axelard" => "axelard"
+    bin.install "axelard-darwin-amd64-v#{version}" => "axelard"
   end
 
   test do
