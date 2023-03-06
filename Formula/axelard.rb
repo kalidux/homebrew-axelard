@@ -14,7 +14,7 @@ class Axelard < Formula
     # ENV.deparallelize  # if your formula fails when building in parallel
     # Remove unrecognized options if warned by configure
     # https://rubydoc.brew.sh/Formula.html#std_configure_args-instance_method
-    bin.install "axelard-darwin-amd64-v0.32.2.zip"
+    bin.install "axelard-darwin-amd64-v0.32.2"
     # system "cmake", "-S", ".", "-B", "build", *std_cmake_args
   end
 
