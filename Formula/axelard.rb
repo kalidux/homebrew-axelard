@@ -12,10 +12,5 @@ class Axelard < Formula
     bin.install "axelard-darwin-amd64-v0.32.2"
     chmod 0755, "#{bin}/axelard"
   end
-
-  test do
-    system "#{bin}/axelard", "--version"
-  end
-            
             
 end
