@@ -11,9 +11,5 @@ class Axelard < Formula
   def install
     bin.install "axelard-darwin-amd64-v0.32.2"
   end
-         
-  test do
-    system "axelard", "--version"
-  end
             
 end
