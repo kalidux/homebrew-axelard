@@ -3,9 +3,6 @@ class Axelard < Formula
   homepage "https://github.com/axelarnetwork/axelar-core"
   license "Apache-2.0"
 
-  # Define sha256_url as an instance variable
-  sha256_url = ""
-
   # Allow the user to specify a version
   option "with-version=", "Specify the version of axelard to install"
 
