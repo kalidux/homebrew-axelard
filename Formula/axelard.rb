@@ -11,7 +11,7 @@ class Axelard < Formula
             end
          
   def install
-    bin.install "axelard-darwin-amd64-v0.32.2"
+    resource("binary").stage { bin.install "axelard" }
   end
             
 end
