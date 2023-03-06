@@ -13,7 +13,7 @@ class Axelard < Formula
   end
 
   def install
-    bin.install "axelard"
+    bin.install "axelard" => "axelard"
   end
 
   test do
