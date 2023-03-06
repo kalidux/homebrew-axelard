@@ -19,22 +19,27 @@ class Axelard < Formula
     url "https://github.com/axelarnetwork/axelar-core/releases/download/v#{version}/axelard-darwin-amd64-v#{version}.zip"
   end
 
-  # Set the sha256 checksum for the downloaded release
-  if Hardware::CPU.arm?
-    sha256 "ca1ab7ce0d3e0f7d1cb2b33e7b3f9d9b7cbf5e06f5a47ee1f16504af7b0d0f43"
-  else
-    sha256 "2303ed69ee0486814e09554449292b0b3e50f61e57248143c0d24f349df33f1d"
-  end
+  # Define the SHA256 checksum of the release archive
+  sha256_arm64 = "51d0965b71c8b40878a64dfc1d7195482f83cd8a0de585b41d262b3c3c4658c6"
+  sha256_amd64 = "2303ed69ee0486814e09554449292b0b3e50f61e57248143c0d24f349df33f1d"
 
   def install
     if Hardware::CPU.arm?
       bin.install "axelard-darwin-arm64-v#{version}" => "axelard"
+      sha256 = sha256_arm64
     else
       bin.install "axelard-darwin-amd64-v#{version}" => "axelard"
+      sha256 = sha256_amd64
     end
 
     # Verify the SHA256 checksum of the downloaded release
-    system "shasum -a 256 -c <<<\"#{sha256}  #{bin}/axelard\""
+    system "echo '#{sha256}  #{bin}/axelard.zip' | shasum -a 256 -c"
+
+    # Remove the .zip extension from the binary file
+    mv "#{bin}/axelard-darwin-*", "#{bin}/axelard"
+
+    # Make the binary executable
+    chmod "+x", "#{bin}/axelard"
   end
 
   test do
