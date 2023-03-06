@@ -42,3 +42,4 @@ class Axelard < Formula
     system "#{bin}/axelard", "version"
   end
 end
+
