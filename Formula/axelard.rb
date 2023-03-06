@@ -1,21 +1,26 @@
 class Axelard < Formula
-  desc "Axelar Core - A decentralized interoperability network for cross-chain communication"
+  desc "Axelar Network Client"
   homepage "https://github.com/axelarnetwork/axelar-core"
-  license "Apache-2.0"
+  url "https://github.com/axelarnetwork/axelar-core/releases/download/#{version}/axelard-darwin-#{arch}-#{version}.zip"
+  version "0.31.2"
+  sha256 "abc123..."
 
-  url "https://github.com/axelarnetwork/axelar-core/releases/latest/download/axelard-darwin-amd64-latest.tar.gz"
-  version "latest"
-  sha256 "d5f63616a21f1c767cc40b06a291b10d50b3c53e9a31a9c5e7863615b7e1f5d5"
-
-  bottle :unneeded
-
-  livecheck do
-    url "https://github.com/axelarnetwork/axelar-core/releases/latest"
-    regex(%r{href=.*?/axelard-darwin-amd64-v?(\d+(?:\.\d+)+)(?:-beta)?\.t}i)
-  end
+  option "with-version=", "Specify the version of axelard to install (e.g. --with-version=0.31.2)"
 
   def install
     bin.install "axelard"
+  end
+
+  def version
+    if build.with? "version"
+      build.with?("version")
+    else
+      "v0.31.2"
+    end
+  end
+
+  def arch
+    Hardware::CPU.arm? ? "arm64" : "amd64"
   end
 
   test do
