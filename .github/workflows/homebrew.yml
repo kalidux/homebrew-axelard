@@ -30,7 +30,6 @@ jobs:
           git config --local user.name "kalid"
           git add --all
           git diff-index --quiet HEAD -- ||  git commit -m "create formula"
-
       - name: Push changes
         uses: ad-m/github-push-action@master
         with:
@@ -43,5 +42,4 @@ jobs:
           
       - name: install the binary
         run: |
-          brew install axelard-darwin-amd64-v0.32.2
-          axelard-darwin-amd64-v0.32.2 version
+          brew install axelard
