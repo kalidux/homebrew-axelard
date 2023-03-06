@@ -3,6 +3,9 @@ class Axelard < Formula
   homepage "https://github.com/axelarnetwork/axelar-core"
   license "Apache-2.0"
 
+  # Define sha256_url as an instance variable
+  sha256_url = ""
+
   # Allow the user to specify a version
   option "with-version=", "Specify the version of axelard to install"
 
@@ -15,10 +18,10 @@ class Axelard < Formula
 
   if Hardware::CPU.arm?
     url "https://github.com/axelarnetwork/axelar-core/releases/download/v#{version}/axelard-darwin-arm64-v#{version}.zip"
-    sha256_url "https://github.com/axelarnetwork/axelar-core/releases/download/v#{version}/axelard-darwin-arm64-v#{version}.zip.sha256"
+    sha256_url = "https://github.com/axelarnetwork/axelar-core/releases/download/v#{version}/axelard-darwin-arm64-v#{version}.zip.sha256"
   else
     url "https://github.com/axelarnetwork/axelar-core/releases/download/v#{version}/axelard-darwin-amd64-v#{version}.zip"
-    sha256_url "https://github.com/axelarnetwork/axelar-core/releases/download/v#{version}/axelard-darwin-amd64-v#{version}.zip.sha256"
+    sha256_url = "https://github.com/axelarnetwork/axelar-core/releases/download/v#{version}/axelard-darwin-amd64-v#{version}.zip.sha256"
   end
 
   def install
