@@ -1,26 +1,18 @@
 class Axelard < Formula
-  desc "Axelar Network Client"
-  homepage "https://github.com/axelarnetwork/axelar-core"
-  url "https://github.com/axelarnetwork/axelar-core/releases/download/#{version}/axelard-darwin-#{arch}-#{version}.zip"
+  desc "Axelar Network full node"
+  homepage "https://axelar.network/"
   version "0.31.2"
-  sha256 "abc123..."
 
-  option "with-version=", "Specify the version of axelard to install (e.g. --with-version=0.31.2)"
+  if Hardware::CPU.arm?
+    url "https://github.com/axelarnetwork/axelar-core/releases/download/v#{version}/axelard-darwin-arm64-v#{version}.zip"
+    sha256 "f082ae1e5fa34d919cc40dcbda5e15f30eb9a73536e760b05741720c872dcbad"
+  else
+    url "https://github.com/axelarnetwork/axelar-core/releases/download/v#{version}/axelard-darwin-amd64-v#{version}.zip"
+    sha256 "f60a9c1b8b3bb2c3d3e2a2c96e80b10d1129001a41b1df9b7a77a731f3697c46"
+  end
 
   def install
     bin.install "axelard"
-  end
-
-  def version
-    if build.with? "version"
-      build.with?("version")
-    else
-      "v0.31.2"
-    end
-  end
-
-  def arch
-    Hardware::CPU.arm? ? "arm64" : "amd64"
   end
 
   test do
