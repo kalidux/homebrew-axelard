@@ -15,21 +15,25 @@ class Axelard < Formula
 
   if Hardware::CPU.arm?
     url "https://github.com/axelarnetwork/axelar-core/releases/download/v#{version}/axelard-darwin-arm64-v#{version}.zip"
-    sha256 "ad9f7b475dcb2fbf7cc95f53e1b7d932c5f5dadd8e2a9b531f3a3a3b09f1d708"
+    sha256_arm64 "49d9f9c8c99aa61dce81a47db3fc5f7fc32ed634e1bebd5d5f06cb7aa5b98cf5"
   else
     url "https://github.com/axelarnetwork/axelar-core/releases/download/v#{version}/axelard-darwin-amd64-v#{version}.zip"
-    sha256 "2303ed69ee0486814e09554449292b0b3e50f61e57248143c0d24f349df33f1d"
+    sha256_amd64 "2303ed69ee0486814e09554449292b0b3e50f61e57248143c0d24f349df33f1d"
   end
 
   def install
     if Hardware::CPU.arm?
       bin.install "axelard-darwin-arm64-v#{version}" => "axelard"
+      expected_sha256 = sha256_arm64
     else
       bin.install "axelard-darwin-amd64-v#{version}" => "axelard"
+      expected_sha256 = sha256_amd64
     end
 
     # Verify the SHA256 checksum of the downloaded release
-    system "shasum -a 256 -c <<<\"#{sha256}  #{bin}/axelard\""
+    output = shell_output("shasum -a 256 #{bin}/axelard")
+    actual_sha256 = output.split.first
+    raise "SHA256 mismatch: expected #{expected_sha256} but got #{actual_sha256}" if expected_sha256 != actual_sha256
   end
 
   test do
