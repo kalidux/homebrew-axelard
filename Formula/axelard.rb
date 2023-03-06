@@ -1,5 +1,5 @@
 class Axelard < Formula
-  desc Axelard for Darwin
+  desc 'Axelard for Darwin'
   homepage 'https://axelar.network'
   url 'https://github.com/axelarnetwork/axelar-core/releases/download/v0.32.2/axelard-darwin-amd64-v0.32.2.zip'
   version '0.32.2'
@@ -11,10 +11,7 @@ class Axelard < Formula
   end
 
   def install
-    # Install the binary file
     resource(binary).stage { bin.install axelard }
-
-    # Make the binary file executable
     chmod 0755, #{bin}/axelard
   end
 
