@@ -19,20 +19,19 @@ class Axelard < Formula
     url "https://github.com/axelarnetwork/axelar-core/releases/download/v#{version}/axelard-darwin-amd64-v#{version}.zip"
   end
 
+  # Set the sha256 checksum for the downloaded release
+  if Hardware::CPU.arm?
+    sha256 "ca1ab7ce0d3e0f7d1cb2b33e7b3f9d9b7cbf5e06f5a47ee1f16504af7b0d0f43"
+  else
+    sha256 "2303ed69ee0486814e09554449292b0b3e50f61e57248143c0d24f349df33f1d"
+  end
+
   def install
     if Hardware::CPU.arm?
       bin.install "axelard-darwin-arm64-v#{version}" => "axelard"
     else
       bin.install "axelard-darwin-amd64-v#{version}" => "axelard"
     end
-
-    # Download the SHA256 checksum for the release
-    sha256_url = "https://github.com/axelarnetwork/axelar-core/releases/download/v#{version}/axelard-darwin-amd64-v#{version}.sha256"
-    sha256_output = `curl -sSL #{sha256_url}`
-
-    # Extract the SHA256 checksum from the output
-    sha256 = sha256_output[/(\h{64})/, 1]
-    raise "Failed to retrieve SHA256 checksum" if sha256.nil?
 
     # Verify the SHA256 checksum of the downloaded release
     system "shasum -a 256 -c <<<\"#{sha256}  #{bin}/axelard\""
@@ -42,4 +41,3 @@ class Axelard < Formula
     system "#{bin}/axelard", "version"
   end
 end
-
