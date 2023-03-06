@@ -43,4 +43,5 @@ jobs:
           
       - name: install the binary
         run: |
+          brew update
           brew install axelard
