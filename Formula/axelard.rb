@@ -15,6 +15,7 @@ class Axelard < Formula
     # Remove unrecognized options if warned by configure
     # https://rubydoc.brew.sh/Formula.html#std_configure_args-instance_method
     bin.install "axelard-darwin-amd64-v0.32.2"
+    system ./configure --disable-debug --disable-dependency-tracking --prefix=/opt/homebrew/Cellar/axelard/0.32.2 --libdir=/opt/homebrew/Cellar/axelard/0.32.2/lib --disable-silent-rules
     # system "cmake", "-S", ".", "-B", "build", *std_cmake_args
   end
 
