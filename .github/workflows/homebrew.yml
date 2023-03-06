@@ -28,20 +28,30 @@ jobs:
         run: |
           mkdir -p Formula
           wget --no-check-certificate https://github.com/axelarnetwork/axelar-core/releases/download/v0.32.2/axelard-darwin-amd64-v0.32.2.zip.sha256
-          SHA256=$(cat axelard-darwin-amd64-v0.32.2.zip.sha256)
+          SHA256ZIP=$(cat axelard-darwin-amd64-v0.32.2.zip.sha256)
+           wget --no-check-certificate https://github.com/axelarnetwork/axelar-core/releases/download/v0.32.2/axelard-darwin-amd64-v0.32.2.sha256
+          SHA256=$(cat axelard-darwin-amd64-v0.32.2.sha256)         
           echo "class Axelard < Formula
-            desc "axelard binary for darwin"
+            desc "Axelard binary for darwin"
             homepage "https://axelar.network"
-            url "https://github.com/axelarnetwork/axelar-core/releases/download/v0.32.2/axelard-darwin-amd64-v0.32.2.zip"
+            url url "https://github.com/axelarnetwork/axelar-core/releases/download/v0.32.2/axelard-darwin-amd64-v0.32.2.zip"
             version "0.32.2"
-            sha256 "$SHA256"
-            def install
-              bin.install "axelard"
+            sha256 "$SHA256ZIP"
+
+            resource "axelard" do
+              url "https://github.com/axelarnetwork/axelar-core/releases/download/v0.32.2/axelard-darwin-amd64-v0.32.2"
+              sha256 "$SHA256"
             end
-          end" > axelard.rb
+
+            def install
+              resource("axelard").stage do
+                bin.install "axelard"
+              end
+            end" > axelard.rb
           cat axelard.rb
           mv axelard.rb Formula
           rm -fr axelard-darwin-amd64-v0.32.2.zip.sha256
+          rm -fr axelard-darwin-amd64-v0.32.2.sha256
   
       - name: Commit files
         run: |
