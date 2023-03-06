@@ -4,16 +4,13 @@ class Axelard < Formula
   license "Apache-2.0"
   version "0.32.2"
 
-  url "https://github.com/axelarnetwork/axelar-core/releases/download/v#{version}/axelard-darwin-#{Hardware::CPU.arch}-v#{version}.zip"
-  sha256 case Hardware::CPU.arch
-         when :arm64
-           "f94d1d0a37e745a0f6c8a416d3c3dd3be0f3a2af1a0e423e2d1e872f7787fbb8"
-         when :x86_64
-           "74de0c905a3525d719d156f5c67f5e13c5f529d7db9cbf6dd2067c8e4f4b3c4d"
-         else
-           # This should never happen, but just in case.
-           raise "Unsupported architecture"
-         end
+  if Hardware::CPU.arm?
+    url "https://github.com/axelarnetwork/axelar-core/releases/download/v#{version}/axelard-darwin-arm64-v#{version}.zip"
+    sha256 "7dd04a47a73a4b16f4fa4c578155e89e26ad2f197d1cf9b83c5ef862f63a4a4b"
+  else
+    url "https://github.com/axelarnetwork/axelar-core/releases/download/v#{version}/axelard-darwin-amd64-v#{version}.zip"
+    sha256 "c8eb1535be5d2e5e5f6df9618baf5cf6b5f6eb1d01908c8a0a8a77a0b63f20e7"
+  end
 
   def install
     bin.install "axelard"
