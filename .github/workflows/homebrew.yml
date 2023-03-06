@@ -35,12 +35,12 @@ jobs:
           echo "class Axelard < Formula
             desc "Axelard for Darwin"
             homepage "https://axelar.network"
-            url "https://github.com/axelarnetwork/axelar-core/releases/download/v0.32.2/axelard-darwin-amd64-v0.32.2.zip"
+            url 'https://github.com/axelarnetwork/axelar-core/releases/download/v0.32.2/axelard-darwin-amd64-v0.32.2.zip'
             version "0.32.2"
             sha256 "$SHA256ZIP"
 
             resource "binary" do
-              url "https://github.com/axelarnetwork/axelar-core/releases/download/v0.32.2/axelard-darwin-amd64-v0.32.2"
+              url 'https://github.com/axelarnetwork/axelar-core/releases/download/v0.32.2/axelard-darwin-amd64-v0.32.2'
               sha256 "$SHA256"
             end
 
