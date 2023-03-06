@@ -42,5 +42,6 @@ jobs:
           
       - name: install the binary
         run: |
+          brew update
           brew install axelard --with-version=0.29.1
           axelard version
