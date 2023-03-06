@@ -1,15 +1,19 @@
 class Axelard < Formula
-  desc "Axelar Network full node"
-  homepage "https://axelar.network/"
+  desc "The Axelar Network Core Daemon"
+  homepage "https://github.com/axelarnetwork/axelar-core"
+  license "Apache-2.0"
   version "0.31.2"
 
-  if Hardware::CPU.arm?
-    url "https://github.com/axelarnetwork/axelar-core/releases/download/v#{version}/axelard-darwin-arm64-v#{version}.zip"
-    sha256 "f60a9c1b8b3bb2c3d3e2a2c96e80b10d1129001a41b1df9b7a77a731f3697c46"
-  else
-    url "https://github.com/axelarnetwork/axelar-core/releases/download/v#{version}/axelard-darwin-amd64-v#{version}.zip"
-    sha256 "f60a9c1b8b3bb2c3d3e2a2c96e80b10d1129001a41b1df9b7a77a731f3697c46"
-  end
+  url "https://github.com/axelarnetwork/axelar-core/releases/download/v#{version}/axelard-darwin-#{Hardware::CPU.arch}-v#{version}.zip"
+  sha256 case Hardware::CPU.arch
+         when :arm64
+           "45f0b4df4f4a4d8a502b75f9b91f3ab3a0e8f0afca74e5d15f50fa7d746292dd"
+         when :x86_64
+           "279b61fbb6ec20130b96efc6f3d3b131e96caac9b145be98d02547e6d20496e8"
+         else
+           # This should never happen, but just in case.
+           raise "Unsupported architecture"
+         end
 
   def install
     bin.install "axelard"
