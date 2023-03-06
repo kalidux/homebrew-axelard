@@ -10,7 +10,6 @@ class Axelard < Formula
          
   def install
     bin.install "axelard-darwin-amd64-v0.32.2"
-    chmod 0755, "#{bin}/axelard"
   end
             
 end
