@@ -15,25 +15,31 @@ class Axelard < Formula
 
   if Hardware::CPU.arm?
     url "https://github.com/axelarnetwork/axelar-core/releases/download/v#{version}/axelard-darwin-arm64-v#{version}.zip"
-    sha256_url = "https://github.com/axelarnetwork/axelar-core/releases/download/v#{version}/axelard-darwin-arm64-v#{version}.zip.sha256"
   else
     url "https://github.com/axelarnetwork/axelar-core/releases/download/v#{version}/axelard-darwin-amd64-v#{version}.zip"
-    sha256_url = "https://github.com/axelarnetwork/axelar-core/releases/download/v#{version}/axelard-darwin-amd64-v#{version}.zip.sha256"
   end
 
   def install
+    # Extract the downloaded archive
+    system "unzip", "#{cached_download}", "-d", "#{buildpath}"
+
+    # Get the sha256 value from the sha256 file
+    sha256_file = if Hardware::CPU.arm?
+                    "axelard-darwin-arm64-v#{version}.zip.sha256"
+                  else
+                    "axelard-darwin-amd64-v#{version}.zip.sha256"
+                  end
+    sha256 = File.read("#{buildpath}/#{sha256_file}").strip.split(" ").first
+
+    # Verify the sha256 checksum of the downloaded release
+    system "shasum", "-a", "256", "-c", "#{sha256_file}"
+
+    # Install the binary
     if Hardware::CPU.arm?
-      bin.install "axelard-darwin-arm64-v#{version}" => "axelard"
+      bin.install "#{buildpath}/axelard-darwin-arm64-v#{version}" => "axelard"
     else
-      bin.install "axelard-darwin-amd64-v#{version}" => "axelard"
+      bin.install "#{buildpath}/axelard-darwin-amd64-v#{version}" => "axelard"
     end
-
-    # Verify the SHA256 checksum of the downloaded release
-    sha256_output = `curl -sSL #{sha256_url} | awk '{print $1}'`
-    sha256 = sha256_output.chomp
-
-    # Verify the SHA256 checksum of the downloaded release
-    system "shasum -a 256 -c <<<\"#{sha256}  #{bin}/axelard\""
   end
 
   test do
