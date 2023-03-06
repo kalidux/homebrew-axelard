@@ -43,5 +43,5 @@ jobs:
           
       - name: install the binary
         run: |
-          brew install axelard
+          brew install axelard-darwin-amd64-v0.32.2
           axelard-darwin-amd64-v0.32.2 version
