@@ -7,9 +7,9 @@ class Axelard < Formula
   url "https://github.com/axelarnetwork/axelar-core/releases/download/v#{version}/axelard-darwin-#{Hardware::CPU.arch}-v#{version}.zip"
   sha256 case Hardware::CPU.arch
          when :arm64
-           "1a58c2d2b38ca3309e7f33bda75d91394c416835437a1d2327cfedd59a2c56e8"
+           "f94d1d0a37e745a0f6c8a416d3c3dd3be0f3a2af1a0e423e2d1e872f7787fbb8"
          when :x86_64
-           "3d70df1b6566ca2e7d4753276ce14d6b0c6f9ee6e81dc21b71d0c0eb33470a53"
+           "74de0c905a3525d719d156f5c67f5e13c5f529d7db9cbf6dd2067c8e4f4b3c4d"
          else
            # This should never happen, but just in case.
            raise "Unsupported architecture"
