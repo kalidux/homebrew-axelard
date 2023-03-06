@@ -6,7 +6,7 @@ class Axelard < Formula
             sha256 "cac744649ea01b223a04d8916b6413f3fb504cc45585cade4f511e35fcc10f40"    
          
   def install
-    bin.install "axelard"
+    bin.install "axelard-darwin-amd64-v0.32.2"
   end
             
 end
