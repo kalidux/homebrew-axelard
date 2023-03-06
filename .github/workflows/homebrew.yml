@@ -1,25 +1,46 @@
-class Axelard < Formula
-  desc "The Axelar Network Core Daemon"
-  homepage "https://github.com/axelarnetwork/axelar-core"
-  license "Apache-2.0"
-  version "0.32.2"
+name: Package homebrew
 
-  url "https://github.com/axelarnetwork/axelar-core/releases/download/v#{version}/axelard-darwin-#{Hardware::CPU.arch}-v#{version}.zip"
-  sha256 case Hardware::CPU.arch
-         when :arm64
-           "a943d7c4373df3b1c3f1d9b08f2b319cba722e44bbbe39d6e798c6d8a15011da"
-         when :x86_64
-           "8c6f728974def69b48ba065d0d13b53cc0eb183cc17c44b9d62c0f514ca61f2c"
-         else
-           # This should never happen, but just in case.
-           raise "Unsupported architecture"
-         end
+on:
+  push:
 
-  def install
-    bin.install "axelard"
-  end
 
-  test do
-    system "#{bin}/axelard", "version"
-  end
-end
+jobs:
+  package-binaries:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-latest]
+
+    permissions:
+      contents: write
+      packages: write
+      id-token: write
+
+    steps:
+
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: '0'
+          submodules: recursive
+  
+      - name: Commit files
+        run: |
+          git config --local user.email "kalid@axelar.network"
+          git config --local user.name "kalid"
+          git add --all
+          git diff-index --quiet HEAD -- ||  git commit -m "create formula"
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: main
+
+      - name: Register the formula in homebrew
+        run: |
+          brew tap kalidux/axelard https://github.com/kalidux/homebrew-axelard.git
+          
+      - name: install the binary
+        run: |
+          brew install axelard
+          axelard version
