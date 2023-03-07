@@ -27,9 +27,13 @@ class Axelard < Formula
   end
 
   # Select the latest version if none is specified
-  latest_version = VERSIONS.keys.last
-  version = ARGV.value("axelard-version") || latest_version
-  puts "Selected version: #{version}"
+  if ARGV.value("version").nil?
+    version = VERSIONS.keys.last
+  else
+    version = ARGV.value("version")
+    ohai "Selected version: #{version}"
+    raise "Invalid version: #{version}" unless VERSIONS.key?(version)
+  end
 
   # Retrieve the SHA256 hash for the selected version and platform
   sha256 = VERSIONS[version][platform]
