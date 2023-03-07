@@ -30,6 +30,7 @@ jobs:
           git config --local user.name "kalid"
           git add --all
           git diff-index --quiet HEAD -- ||  git commit -m "create formula"
+          
       - name: Push changes
         uses: ad-m/github-push-action@master
         with:
@@ -42,5 +43,6 @@ jobs:
           
       - name: install the binary
         run: |
+          brew update
           brew install kalidux/axelard/axelard@0.32.0
           axelard version
