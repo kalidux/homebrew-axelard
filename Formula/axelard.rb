@@ -28,12 +28,12 @@ class Axelard < Formula
 
   # Select the latest version if none is specified
   latest_version = VERSIONS.keys.last
-  version = ARGV["version"] || latest_version
+  version = ARGV.value("axelard-version") || latest_version
   puts "Selected version: #{version}"
 
   # Retrieve the SHA256 hash for the selected version and platform
   sha256 = VERSIONS[version][platform]
-  raise "Error retrieving SHA256 hash for Axelard version #{version}" unless sha256
+  ohai "Warning: No SHA256 hash found for Axelard version #{version} and platform #{platform}" unless sha256
 
   # Define the URL based on the selected version and platform
   url "https://github.com/axelarnetwork/axelar-core/releases/download/v#{version}/axelard-darwin-#{platform}-v#{version}.zip"
