@@ -5,10 +5,6 @@ class Axelard < Formula
 
   # Define the available versions and platforms
   VERSIONS = {
-    "0.32.0" => {
-      amd64: "2303ed69ee0486814e09554449292b0b3e50f61e57248143c0d24f349df33f1d",
-      arm64: "ebc8e3f9c9a0c4d4f4b41c038dc690ebf6af30e6df1de6e3fb6f3d8c8b6f0bc6",
-    },
     "0.32.2" => {
       amd64: "2303ed69ee0486814e09554449292b0b3e50f61e57248143c0d24f349df33f1d",
       arm64: "a2abc8da15710bae0e77571dece93a8d367b1e416da193477211ed9330cdbdf4",
