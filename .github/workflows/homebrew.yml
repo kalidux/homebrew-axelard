@@ -42,5 +42,5 @@ jobs:
           
       - name: install the binary
         run: |
-          brew install kalidux/axelard/axelard --version=0.32.2
+          brew install kalidux/axelard/axelard --axelard-version=0.32.2
           axelard version
