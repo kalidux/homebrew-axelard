@@ -14,15 +14,14 @@ class Axelard < Formula
 
   # Install the binary
   def install
-  if Hardware::CPU.arm?
-    bin.install "axelard-darwin-arm64-v#{version}" => "axelard"
-  else
-    bin.install "axelard-darwin-amd64-v#{version}" => "axelard"
+    if Hardware::CPU.arm?
+      bin.install "axelard-darwin-arm64-v#{version}" => "axelard"
+    else
+      bin.install "axelard-darwin-amd64-v#{version}" => "axelard"
+    end
   end
 
   test do
     system "#{bin}/axelard", "version"
   end
 end
-
-
