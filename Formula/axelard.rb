@@ -26,13 +26,8 @@ class Axelard < Formula
     puts "Intel architecture detected"
   end
 
-  # Retrieve the selected version or the latest version
-  latest_version = VERSIONS.keys.last
-  option "version:", "Specify the Axelard version to install (default: #{latest_version})"
-  version = ARGV.value("version") || latest_version
-  if VERSIONS[version].nil?
-    odie "Invalid version: #{version}. Available versions: #{VERSIONS.keys.join(', ')}"
-  end
+  # Retrieve the version from the command-line arguments, or use the latest version
+  version = ARGV.value("version") || VERSIONS.keys.last
   puts "Selected version: #{version}"
 
   # Retrieve the SHA256 hash for the selected version and platform
