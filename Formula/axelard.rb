@@ -13,6 +13,7 @@ class Axelard < Formula
   end
 
   # Install the binary
+  def install
   if Hardware::CPU.arm?
     bin.install "axelard-darwin-arm64-v#{version}" => "axelard"
   else
