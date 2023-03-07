@@ -1,8 +1,3 @@
-
-I apologize for the confusion. Here's the updated formula with the ability to specify a version:
-
-ruby
-Copy code
 class Axelard < Formula
   desc "The Axelar Network Core binary"
   homepage "https://github.com/axelarnetwork/axelar-core"
@@ -32,11 +27,7 @@ class Axelard < Formula
   end
 
   # Select the latest version if none is specified
-  latest_version = VERSIONS.keys.last
-  version = ARGV.value("version") || latest_version
-  puts "Selected version: #{version}"
-
-  # Retrieve the SHA256 hash for the selected version and platform
+  version = ARGV.value("axelard-version") || VERSIONS.keys.last
   sha256 = VERSIONS[version][platform]
   ohai "Warning: No SHA256 hash found for Axelard version #{version} and platform #{platform}" unless sha256
 
