@@ -26,8 +26,8 @@ class Axelard < Formula
     puts "Intel architecture detected"
   end
 
-  # Select the latest version if none is specified
-  version = ARGV.value("axelard-version") || VERSIONS.keys.last
+  # Select the version specified or the latest version if none is specified
+  version = ARGV.value("version") || VERSIONS.keys.last
   sha256 = VERSIONS[version][platform]
   ohai "Warning: No SHA256 hash found for Axelard version #{version} and platform #{platform}" unless sha256
 
@@ -48,3 +48,7 @@ class Axelard < Formula
     system "#{bin}/axelard", "version"
   end
 end
+
+
+
+
